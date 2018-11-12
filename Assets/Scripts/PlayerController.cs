@@ -11,11 +11,6 @@ public class PlayerController : MonoBehaviour {
 	float angle;
 
 	Quaternion targetRotation;
-	Transform cam;
-
-	private void Start () {
-		cam = Camera.main.transform;
-	}
 
 	void Update () {
 		GetInput ();
@@ -34,7 +29,6 @@ public class PlayerController : MonoBehaviour {
 	void CalculateDirection () {
 		angle = Mathf.Atan2 (input.x, input.y);
 		angle = Mathf.Rad2Deg * angle;
-		angle += cam.eulerAngles.y;
 	}
 
 	void Rotate () {
