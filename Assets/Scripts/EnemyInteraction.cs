@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPushed : MonoBehaviour {
+public class EnemyInteraction : MonoBehaviour {
 
 	public float force;
 
@@ -16,9 +16,9 @@ public class EnemyPushed : MonoBehaviour {
 
 	void OnCollisionEnter (Collision enemy) {
 		if (enemy.gameObject.tag == "Player") {
-			Debug.Log ("Ti pidor");
 			var dir = -transform.forward;
 			GetComponent<Rigidbody> ().AddForce (dir * force, ForceMode.VelocityChange);
+			GetComponent<EnemyController> ().HP = GetComponent<EnemyController> ().HP - enemy.gameObject.GetComponent<PlayerController> ().DMG;
 		}
 	}
 }

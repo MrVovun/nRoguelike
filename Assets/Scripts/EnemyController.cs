@@ -6,17 +6,14 @@ public class EnemyController : MonoBehaviour {
 
 	public Transform player;
 	public float speed;
+	public bool canMove = true;
+	public int HP;
+	public int DMG;
 
 	void Update () {
 		Vector3 targetDir = player.position - transform.position;
-
-		// The step size is equal to speed times frame time.
 		float step = speed * Time.deltaTime;
-
 		Vector3 newDir = Vector3.RotateTowards (transform.forward, targetDir, step, 0.0f);
-		Debug.DrawRay (transform.position, newDir, Color.red);
-
-		// Move our position a step closer to the target.
 		transform.rotation = Quaternion.LookRotation (newDir);
 	}
 }

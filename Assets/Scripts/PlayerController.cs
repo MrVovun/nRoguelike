@@ -6,11 +6,13 @@ public class PlayerController : MonoBehaviour {
 
 	public float velocity = 5;
 	public float turnSpeed = 10;
+	public bool canMove = true;
+	public int HP;
+	public int DMG;
 
 	Vector2 input;
 	float angle;
 	Rigidbody rb;
-	public bool canMove = true;
 
 	Quaternion targetRotation;
 
