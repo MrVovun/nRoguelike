@@ -9,16 +9,24 @@ public class PlayerController : MonoBehaviour {
 
 	Vector2 input;
 	float angle;
+	Rigidbody rb;
+	public bool canMove = true;
 
 	Quaternion targetRotation;
 
-	void Update () {
+	private void Start () {
+		rb = GetComponent<Rigidbody> ();
+	}
+
+	void FixedUpdate () {
 		GetInput ();
 		if (Mathf.Abs (input.x) < 1 && Mathf.Abs (input.y) < 1) return;
 
 		CalculateDirection ();
 		Rotate ();
-		Move ();
+		if (canMove == true) {
+			Move ();
+		}
 	}
 
 	void GetInput () {
@@ -37,7 +45,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Move () {
-		transform.position += transform.forward * velocity * Time.deltaTime;
+		var koeff = transform.position + transform.forward * velocity * Time.deltaTime;
+		rb.MovePosition (koeff);
 	}
 
 }
