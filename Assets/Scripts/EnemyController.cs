@@ -11,9 +11,8 @@ public class EnemyController : MonoBehaviour {
 	public int DMG;
 
 	void Update () {
-		Vector3 targetDir = player.position - transform.position;
-		float step = speed * Time.deltaTime;
-		Vector3 newDir = Vector3.RotateTowards (transform.forward, targetDir, step, 0.0f);
-		transform.rotation = Quaternion.LookRotation (newDir);
+		var lookDir = player.position - transform.position;
+		lookDir.y = 0;
+		transform.rotation = Quaternion.LookRotation (lookDir);
 	}
 }
