@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a199854709ca1f74dad806f6bb84c746, type: 3}
   m_Name: WeaponItem2
   m_EditorClassIdentifier: 
-  name: NewItem
+  name: Weapon2
   icon: {fileID: 0}
   type: Weapon
+  itemText: {fileID: 0}

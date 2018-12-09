@@ -53,7 +53,10 @@ public class PlayerInteraction : MonoBehaviour {
 		Item currentItem = Inventory.instance.items.Find (x => x.type == chosenItem.GetComponent<ItemInteraction> ().item.type);
 		if (currentItem != null && currentItem.type == chosenItem.GetComponent<ItemInteraction> ().item.type) {
 			var offset = transform.position + new Vector3 (0, 0, -1);
-			Instantiate (itemPrefab, offset, Quaternion.identity);
+			// itemPrefab.name = chosenItem.GetComponent<ItemInteraction> ().item.name;
+			GameObject newItem = Instantiate (itemPrefab, offset, Quaternion.identity);
+			newItem.GetComponent<ItemInteraction> ().item = currentItem;
+			newItem.name = chosenItem.GetComponent<ItemInteraction> ().item.name;
 			Inventory.instance.Remove (currentItem);
 			Inventory.instance.Add (chosenItem.GetComponent<ItemInteraction> ().item);
 			Destroy (chosenItem);

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 135572701155815704}
   - component: {fileID: 114174731211350444}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Weapon2
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

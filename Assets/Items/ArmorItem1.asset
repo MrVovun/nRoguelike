@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a199854709ca1f74dad806f6bb84c746, type: 3}
   m_Name: ArmorItem1
   m_EditorClassIdentifier: 
-  name: ArmorItem1
+  name: Armor1
   icon: {fileID: 0}
   type: Armor
+  itemText: {fileID: 0}
