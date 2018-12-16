@@ -9,6 +9,10 @@ public class PlayerInteraction : MonoBehaviour {
 	public GameObject chosenItem;
 	public GameObject itemPrefab;
 
+	private void Start () {
+		GetComponent<StatsHolder> ().currentHP = GetComponent<StatsHolder> ().HP;
+	}
+
 	private void Update () {
 		if (Input.GetKeyDown (KeyCode.Space) && chosenItem != null) {
 			PickUpChosenItem ();
@@ -22,7 +26,7 @@ public class PlayerInteraction : MonoBehaviour {
 			GetComponent<Rigidbody> ().AddForce (dir * force, ForceMode.VelocityChange);
 			GetComponent<PlayerController> ().canMove = false;
 			StartCoroutine ("Push");
-			GetComponent<PlayerController> ().HP = GetComponent<PlayerController> ().HP - enemy.gameObject.GetComponent<EnemyController> ().DMG;
+			GetComponent<StatsHolder> ().currentHP = GetComponent<StatsHolder> ().currentHP - enemy.gameObject.GetComponent<StatsHolder> ().DMG;
 		}
 	}
 

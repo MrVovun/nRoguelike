@@ -29,6 +29,14 @@ public class Inventory : MonoBehaviour {
 
 	public void Add (Item item) {
 		items.Add (item);
+		if (item.type == "Weapon") {
+			GameObject player = GameObject.FindGameObjectWithTag ("Player");
+			player.GetComponent<StatsHolder> ().DMG = player.GetComponent<StatsHolder> ().DMG + item.DMG;
+		} else if (item.type == "Armor") {
+			GameObject player = GameObject.FindGameObjectWithTag ("Player");
+			player.GetComponent<StatsHolder> ().HP = player.GetComponent<StatsHolder> ().HP + item.armor;
+			player.GetComponent<StatsHolder> ().currentHP = player.GetComponent<StatsHolder> ().currentHP + item.armor;
+		}
 		textBox.GetComponent<TextMeshProUGUI> ().text = item.name;
 		GameObject itemTextBox = Instantiate (textBox);
 		itemTextBox.transform.SetParent (gameCanvas.transform);
@@ -38,6 +46,14 @@ public class Inventory : MonoBehaviour {
 	public void Remove (Item item) {
 		Destroy (item.itemText);
 		item.itemText = null;
+		if (item.type == "Weapon") {
+			GameObject player = GameObject.FindGameObjectWithTag ("Player");
+			player.GetComponent<StatsHolder> ().DMG = player.GetComponent<StatsHolder> ().DMG - item.DMG;
+		} else if (item.type == "Armor") {
+			GameObject player = GameObject.FindGameObjectWithTag ("Player");
+			player.GetComponent<StatsHolder> ().HP = player.GetComponent<StatsHolder> ().HP - item.armor;
+			player.GetComponent<StatsHolder> ().currentHP = player.GetComponent<StatsHolder> ().currentHP - item.armor;
+		}
 		items.Remove (item);
 	}
 

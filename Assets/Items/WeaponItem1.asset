@@ -15,3 +15,5 @@ MonoBehaviour:
   icon: {fileID: 0}
   type: Weapon
   itemText: {fileID: 0}
+  DMG: 11
+  armor: 0

@@ -14,3 +14,6 @@ MonoBehaviour:
   name: Armor2
   icon: {fileID: 0}
   type: Armor
+  itemText: {fileID: 0}
+  DMG: 0
+  armor: 4

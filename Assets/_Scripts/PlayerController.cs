@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	public float velocity = 5;
 	public float turnSpeed = 10;
 	public bool canMove = true;
-	public int HP;
-	public int DMG;
 
 	Vector2 input;
 	float angle;
@@ -29,6 +26,9 @@ public class PlayerController : MonoBehaviour {
 		if (canMove == true) {
 			Move ();
 		}
+		if (GetComponent<StatsHolder> ().currentHP <= 0) {
+			Death ();
+		}
 	}
 
 	void GetInput () {
@@ -47,8 +47,13 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Move () {
-		var koeff = transform.position + transform.forward * velocity * Time.deltaTime;
+		var koeff = transform.position + transform.forward * GetComponent<StatsHolder> ().speed * Time.deltaTime;
 		rb.MovePosition (koeff);
+	}
+
+	void Death () {
+		Debug.Log ("You died");
+		canMove = false;
 	}
 
 }
