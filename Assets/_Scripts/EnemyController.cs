@@ -18,6 +18,8 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	void Death () {
+		if (player.GetComponent<StatsHolder> ().currentHP <= player.GetComponent<StatsHolder> ().HP / 2)
+			GetComponent<Drop> ().DropItem ();
 		Destroy (gameObject);
 	}
 }

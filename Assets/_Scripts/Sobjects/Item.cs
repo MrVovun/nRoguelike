@@ -8,6 +8,6 @@ public class Item : ScriptableObject {
 	public string type;
 	public GameObject itemText;
 
-	public int DMG;
-	public int armor;
+	public float DMG;
+	public float armor;
 }

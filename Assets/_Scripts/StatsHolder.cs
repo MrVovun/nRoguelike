@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StatsHolder : MonoBehaviour {
-	public int HP;
-	public int currentHP;
-	public int DMG;
+	public double HP;
+	public double currentHP;
+	public double DMG;
 	public float speed;
 }

@@ -43,10 +43,15 @@ public class PlayerInteraction : MonoBehaviour {
 
 	private void OnTriggerEnter (Collider other) {
 		if (other.tag == "Item") {
-			other.GetComponent<ItemInteraction> ().HighlightThis ();
+			other.gameObject.GetComponent<ItemInteraction> ().HighlightThis ();
 			chosenItem = other.gameObject;
+		} else if (other.tag == "Potion") {
+			Debug.Log ("Potion!");
+			GetComponent<StatsHolder> ().currentHP = GetComponent<StatsHolder> ().currentHP + other.gameObject.GetComponent<HealPotion> ().healAmount;
+			Destroy (other.gameObject);
 		}
 	}
+
 	private void OnTriggerExit (Collider other) {
 		if (other.gameObject == chosenItem) {
 			chosenItem = null;

@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
 
 	public float turnSpeed = 10;
 	public bool canMove = true;
+	public Transform nearestCheckPoint;
 
 	Vector2 input;
 	float angle;
@@ -54,6 +55,32 @@ public class PlayerController : MonoBehaviour {
 	void Death () {
 		Debug.Log ("You died");
 		canMove = false;
+		gameObject.SetActive (false);
+		Rebirth ();
+	}
+
+	void Rebirth () {
+		nearestCheckPoint = GetClosestCheckpoint (Checkpoints.instance.checkpoints);
+		transform.position = nearestCheckPoint.transform.position;
+		canMove = true;
+		gameObject.SetActive (true);
+		GetComponent<StatsHolder> ().currentHP = GetComponent<StatsHolder> ().HP;
+	}
+
+	Transform GetClosestCheckpoint (List<Transform> checkpoints) {
+		Transform bestTarget = null;
+		float closestDistanceSqr = Mathf.Infinity;
+		Vector3 currentPosition = transform.position;
+		foreach (Transform potentialTarget in checkpoints) {
+			Vector3 directionToTarget = potentialTarget.position - currentPosition;
+			float dSqrToTarget = directionToTarget.sqrMagnitude;
+			if (dSqrToTarget < closestDistanceSqr) {
+				closestDistanceSqr = dSqrToTarget;
+				bestTarget = potentialTarget;
+			}
+		}
+
+		return bestTarget;
 	}
 
 }
